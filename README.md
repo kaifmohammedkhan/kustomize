@@ -10,7 +10,7 @@ Declarative Kubernetes configuration management using bases and overlays. Simpli
 ## 🛠 Deployment Strategy
 
 <div align="center">
-<img src="images/kustomize/kustomize.gif" width="1000"/>
+<img src="images/kustomize/kustomize.png" width="1000"/>
 </div>
 
 ## Step 1: Base Layer Setup
