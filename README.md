@@ -172,6 +172,8 @@ bash
 <div align="center">
 <img src="images/kustomize/S6 KUSTOMIZE/kustomize6.1.png" width="250"/>
 <img src="images/kustomize/S6 KUSTOMIZE/kustomize6.2.png" width="250"/>
+<img src="images/kustomize/S6 KUSTOMIZE/kustomize6.3.png" width="250"/>
+<img src="images/kustomize/S6 KUSTOMIZE/kustomize6.4.png" width="250"/>
 </div>
 
 ## 📝 Notes
