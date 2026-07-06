@@ -7,12 +7,13 @@ Declarative Kubernetes configuration management using bases and overlays. Simpli
 
 [Watch the Kustomize walkthrough on YouTube](https://www.youtube.com/embed/AGKW1t756Fw?si=gcPf2MJCwWkJAqZo)
 
-🛠 Deployment Strategy
+## 🛠 Deployment Strategy
+
 <div align="center">
 <img src="images/kustomize/kustomize.gif" width="1000"/>
 </div>
 
-Step 1: Base Layer Setup
+## Step 1: Base Layer Setup
 A multi‑node Kind cluster was created using kind-node.yaml configuration. The config defined one control‑plane and three worker nodes, with custom networking subnets:
 
 
@@ -42,7 +43,7 @@ Observation: Initially, all nodes appeared in NotReady state. Within ~1 minute, 
 <img src="images/kustomize/S1 KUSTOMIZE/kustomize1.3.png" width="250"/>
 </div>
 
-Step 2: Base Manifests
+## Step 2: Base Manifests
 Inside the kustomize/base directory, YAML manifests (Secrets, ConfigMaps, Deployments, Services, PVCs) were placed. A kustomization.yaml declared these resources:
 
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -68,7 +69,7 @@ Result: All pods transitioned to Running. Default configuration included two pod
 <img src="images/kustomize/S1 KUSTOMIZE/kustomize1.6.png" width="250"/>
 </div>
 
-Step 3: Overlay Creation – Dev Environment
+## Step 3: Overlay Creation – Dev Environment
 To support environment‑specific customization, overlays were created for dev and prod. Each overlay references the base configuration and applies patches.
 
 Development Overlay Structure
@@ -100,7 +101,7 @@ bash
 <img src="images/kustomize/S3 KUSTOMIZE/kustomize3.1.png" width="250"/>
 </div>
 
-Step 4: Overlay Creation – Prod Environment
+## Step 4: Overlay Creation – Prod Environment
 The prod overlay references the base configuration but applies stronger scaling and service exposure changes.
 
 Replicas increased to 3
@@ -119,10 +120,10 @@ Result: Production overlay scaled the application to 3 replicas and exposed the 
 <img src="images/kustomize/S4 KUSTOMIZE/kustomize4.2.png" width="250"/>
 </div>
 
-Step 5: LoadBalancer Support with MetalLB
+## Step 5: LoadBalancer Support with MetalLB
 Since Kind does not support LoadBalancer services natively, MetalLB was installed.
 
-bash
+
 `kubectl create namespace metallb-system
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.10/config/manifests/metallb-native.yaml`
 Configured IP pools via cluster-addons/metallb-config.yaml:
@@ -152,7 +153,7 @@ Result: Services previously stuck in Pending were now assigned external IPs.
 <img src="images/kustomize/S5 KUSTOMIZE/kustomize5.2.png" width="250"/>
 </div>
 
-Step 6: Deployment Verification
+## Step 6: Deployment Verification
 Applied with:
 
 `kubectl apply -k overlays/prod`
@@ -173,7 +174,7 @@ bash
 <img src="images/kustomize/S6 KUSTOMIZE/kustomize6.2.png" width="250"/>
 </div>
 
-📝 Notes
+## 📝 Notes
 Kustomize: Declarative overlays for environment‑specific deployments.
 
 Infrastructure as Code: Clean separation of base and overlays.
